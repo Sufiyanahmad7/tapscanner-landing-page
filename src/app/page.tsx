@@ -5,13 +5,10 @@ import { Navbar } from '@/components/sections/Navbar';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { TrustedCompanies } from '@/components/sections/TrustedCompanies';
 import { ProblemSolution } from '@/components/sections/ProblemSolution';
-import { WhyTapScanner } from '@/components/sections/WhyTapScanner';
 import { PlatformModules } from '@/components/sections/PlatformModules';
 import { WorkflowTimeline } from '@/components/sections/WorkflowTimeline';
 import { DashboardShowcase } from '@/components/sections/DashboardShowcase';
 import { IndustrySolutions } from '@/components/sections/IndustrySolutions';
-import { SecurityCompliance } from '@/components/sections/SecurityCompliance';
-import { IntegrationsSection } from '@/components/sections/IntegrationsSection';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { ROIStats } from '@/components/sections/ROIStats';
 import { PricingSection } from '@/components/sections/PricingSection';
@@ -43,17 +40,14 @@ export default function Home() {
       {/* 4. Trusted Companies Logo Marquee & Compliance Standards */}
       <TrustedCompanies />
 
-      {/* 5. Problem Statement vs TapScanner Solution */}
+      {/* 5. 4-Step Touchless Check-in Workflow Timeline */}
+      <WorkflowTimeline />
+
+      {/* 6. Problem Statement vs TapScanner Solution */}
       <ProblemSolution />
 
-      {/* 6. Why TapScanner Value Pillars */}
-      <WhyTapScanner />
-
-      {/* 8. 6 Platform Modules Vertical Tab Switcher */}
+      {/* 7. 6 Platform Modules Vertical Tab Switcher */}
       <PlatformModules onBookDemo={handleOpenDemo} />
-
-      {/* 9. 4-Step Touchless Check-in Workflow Timeline */}
-      <WorkflowTimeline />
 
       {/* 10. Interactive Role-Based Dashboard Showcase */}
       <DashboardShowcase onBookDemo={handleOpenDemo} />
@@ -61,16 +55,10 @@ export default function Home() {
       {/* 11. Industry-Specific Solutions */}
       <IndustrySolutions onBookDemo={handleOpenDemo} />
 
-      {/* 12. Security, RBAC & Compliance Hub */}
-      <SecurityCompliance />
-
-      {/* 13. Integrations Ecosystem Grid */}
-      <IntegrationsSection />
-
-      {/* 14. Customer Testimonials & Verified Social Proof */}
+      {/* 13. Customer Testimonials & Verified Social Proof */}
       <Testimonials />
 
-      {/* 15. Animated ROI Impact Stats */}
+      {/* 14. Animated ROI Impact Stats */}
       <ROIStats />
 
       {/* 16. Transparent Tiered Enterprise Pricing Matrix */}

@@ -45,10 +45,10 @@ export const ProblemSolution: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
             Why Modern Enterprises Choose TapScanner
           </h2>
-
+          {/* 
           <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
             Replace manual visitor registers, paper gate passes and disconnected approval processes with one intelligent visitor management platform.
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Floating Glassmorphism Panels Container */}

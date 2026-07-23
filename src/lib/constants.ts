@@ -268,30 +268,30 @@ export const WORKFLOW_STEPS = [
   {
     step: '01',
     title: 'Visitor Registration',
-    desc: 'Visitor submits a visit request or is pre-registered by an employee.',
+    desc: 'Visitor submits a self-serve request or is pre-registered by an employee.',
     icon: 'QrCode',
-    detail: 'Captures visitor photo, details, company profile, and safety policy agreement.',
+    detail: 'Captures photo ID, details, and safety policy agreement.',
   },
   {
     step: '02',
     title: 'Employee Approval',
-    desc: 'The assigned employee receives the visitor request in the TapScanner platform, reviews the visitor details, and approves or rejects the request.',
+    desc: 'Host employee receives an instant notification to review and approve entry.',
     icon: 'BellRing',
-    detail: 'The employee can review visitor information, purpose of visit, scheduled date and time, and approve or reject the request directly from the TapScanner web portal or mobile application.',
+    detail: 'One-tap approval from web portal or mobile app.',
   },
   {
     step: '03',
     title: 'QR Code Generation',
-    desc: 'Once approved, TapScanner automatically generates a secure QR code and visitor pass.',
+    desc: 'TapScanner automatically issues a secure, time-bound digital QR pass.',
     icon: 'Printer',
-    detail: 'Enables instant receipt via printout or pass link, pre-authorizing access to specific gates or offices.',
+    detail: 'Delivered instantly via pass link or print badge.',
   },
   {
     step: '04',
     title: 'Check-In & Check-Out',
-    desc: 'The Guard verifies the QR code at entry and exit. TapScanner records the complete visitor history, timestamps, and audit logs.',
+    desc: 'Guards scan the QR code at perimeters for real-time verification & audit logging.',
     icon: 'CheckCircle2',
-    detail: 'Automates door perimeters clearance, tracks movement durations, and registers the checkout log.',
+    detail: 'Automates gate clearance and instant checkout logs.',
   },
 ];
 
@@ -556,18 +556,6 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer: 'TapScanner is cloud-native and multi-tenant. Standard cloud setup for a corporate lobby takes less than 30 minutes using standard iPads and wireless thermal printers. Multi-plant enterprise deployments with custom SSO typically complete within 3 to 5 business days.',
   },
   {
-    id: '2',
-    category: 'Security & Compliance',
-    question: 'How does TapScanner ensure GDPR and DPDP visitor privacy compliance?',
-    answer: 'TapScanner encrypts all visitor data at rest using AES-256 and in transit via TLS 1.3. You can set automated PII retention policies (e.g., auto-purge visitor photos and phone numbers after 30 or 90 days), enforce digital safety policy signings, and ensure visitors never see prior guest names (eliminating paper register privacy breaches).',
-  },
-  {
-    id: '3',
-    category: 'Hardware & Setup',
-    question: 'Does TapScanner require proprietary hardware?',
-    answer: 'No! TapScanner runs on standard hardware. Kiosks run on any iOS/Android tablet or iPad. Guard gate apps run on standard smartphones or rugged Android handhelds. Printers support standard Zebra, Brother, or Epson Bluetooth/Wi-Fi thermal printers.',
-  },
-  {
     id: '4',
     category: 'Hardware & Setup',
     question: 'What happens if our building loses internet connection?',
@@ -580,21 +568,9 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer: 'Yes! TapScanner is built from the ground up on a multi-tenant SaaS architecture. Master Super Admins can set global security policies while location managers manage branch-specific gates, receptionists, and approval workflows.',
   },
   {
-    id: '6',
-    category: 'Security & Compliance',
-    question: 'Does TapScanner support Single Sign-On (SSO) and Role-Based Access Control (RBAC)?',
-    answer: 'Yes. We support SAML 2.0, OAuth2, Okta, Azure Active Directory, and Google Workspace SSO. RBAC allows granular permissions across our six-level hierarchy: TapScanner Admin, Super Admin, Admin, Supervisor, Guard, and Employee.',
-  },
-  {
     id: '7',
     category: 'Pricing',
     question: 'Is there a limit on the number of hosts or employees?',
     answer: 'Professional and Enterprise plans include unlimited employee profiles so your entire organization can receive instant visitor pings via WhatsApp, Teams, or Email.',
-  },
-  {
-    id: '8',
-    category: 'Pricing',
-    question: 'Can we request a custom proof of concept (POC) for our manufacturing plant?',
-    answer: 'Absolutely. Click "Book Consultation" or fill out our Enterprise Inquiry form to request a 14-day zero-risk pilot at your plant or corporate head office.',
   },
 ];

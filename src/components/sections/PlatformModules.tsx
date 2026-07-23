@@ -26,7 +26,7 @@ const VISITOR_MANAGEMENT_FEATURES = [
     badge: 'Pre-Registration',
     highlights: [
       'Single-use QR Pass Generation',
-      'WhatsApp & Email Invite Dispatch',
+      'Email Invite Dispatch',
       'Automated Calendar Integration',
       'VIP & Group Guest Invites',
       'Custom Entry Time Window Restrictions',
@@ -53,25 +53,6 @@ const VISITOR_MANAGEMENT_FEATURES = [
     metrics: [
       { label: 'Paperless NDAs', value: '100%' },
       { label: 'Compliance Audit Ready', value: 'Instant' },
-    ],
-  },
-  {
-    id: 'host-alerts',
-    title: 'Instant Multi-Channel Host Arrival Pings',
-    shortDesc: 'Real-time WhatsApp, Teams, SMS, & Email notifications upon guest arrival.',
-    fullDesc: 'Never leave guests waiting in the lobby. As soon as a visitor checks in, TapScanner automatically notifies the host with guest photo, company name, and one-tap approval response actions.',
-    iconName: 'Bell',
-    badge: 'Real-Time Alerts',
-    highlights: [
-      'WhatsApp & SMS Instant Arrival Alerts',
-      'Microsoft Teams & Slack Bot Pings',
-      'One-Tap Accept / Reschedule Response',
-      'Delegate Host & Escort Assignment',
-      'Automatic Receptionist Escalation',
-    ],
-    metrics: [
-      { label: 'Notification Speed', value: '< 1 Sec' },
-      { label: 'Host Response Rate', value: '98%' },
     ],
   },
   {
@@ -165,18 +146,16 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
                 <button
                   key={feature.id}
                   onClick={() => setActiveTabId(feature.id)}
-                  className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-start gap-4 cursor-pointer border ${
-                    isActive
+                  className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-start gap-4 cursor-pointer border ${isActive
                       ? 'bg-white border-orange-500/40 shadow-xl shadow-orange-500/10 scale-[1.01]'
                       : 'bg-white/60 border-slate-200/80 hover:bg-white text-slate-700'
-                  }`}
+                    }`}
                 >
                   <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                      isActive
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isActive
                         ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
                         : 'bg-slate-100 text-slate-600'
-                    }`}
+                      }`}
                   >
                     {iconComponents[feature.iconName]}
                   </div>
@@ -184,9 +163,8 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2 mb-1">
                       <h4
-                        className={`text-base font-bold truncate ${
-                          isActive ? 'text-slate-900' : 'text-slate-700'
-                        }`}
+                        className={`text-base font-bold truncate ${isActive ? 'text-slate-900' : 'text-slate-700'
+                          }`}
                       >
                         {feature.title}
                       </h4>

@@ -153,7 +153,7 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
     },
     {
       q: 'How is pricing calculated?',
-      a: 'Starter and Business plans are billed at flat rates per organization according to the location and employee capacity limits. Enterprise quotes are calculated based on your specific requirements.',
+      a: 'Starter and Business plans are billed at flat rates per organization according to the location and visitor capacity limits. Enterprise quotes are calculated based on your specific requirements.',
     },
     {
       q: 'Can I customize modules?',
@@ -300,184 +300,7 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
           })}
         </div>
 
-        {/* Feature Comparison Table */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="text-center mb-6">
-            <h3 className="text-lg font-extrabold text-slate-950 flex items-center justify-center gap-2">
-              <Layers className="w-4 h-4 text-orange-500" />
-              Detailed Feature Matrix
-            </h3>
-            <p className="text-[11px] text-slate-500">Compare options side-by-side</p>
-          </div>
-          <div className="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-md">
-            <table className="w-full text-left border-collapse min-w-[500px]">
-              <thead>
-                <tr className="bg-slate-50 border-b border-slate-200">
-                  <th className="p-3 text-[10px] font-mono font-bold text-slate-950 uppercase tracking-wider">Features</th>
-                  <th className="p-3 text-[10px] font-mono font-bold text-slate-950 uppercase tracking-wider text-center">Starter</th>
-                  <th className="p-3 text-[10px] font-mono font-bold text-slate-950 uppercase tracking-wider text-center">Business</th>
-                  <th className="p-3 text-[10px] font-mono font-bold text-slate-950 uppercase tracking-wider text-center">Enterprise</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row) => (
-                  <tr key={row.name} className="border-b border-slate-100 hover:bg-slate-50/30">
-                    <td className="p-3 text-xs font-semibold text-slate-700">{row.name}</td>
-                    <td className="p-3 text-center">
-                      {row.starter ? (
-                        <Check className="w-4 h-4 text-emerald-500 mx-auto" />
-                      ) : (
-                        <span className="text-slate-300 font-mono text-[10px]">-</span>
-                      )}
-                    </td>
-                    <td className="p-3 text-center">
-                      {row.business ? (
-                        <Check className="w-4 h-4 text-emerald-500 mx-auto" />
-                      ) : (
-                        <span className="text-slate-300 font-mono text-[10px]">-</span>
-                      )}
-                    </td>
-                    <td className="p-3 text-center">
-                      {row.enterprise ? (
-                        <Check className="w-4 h-4 text-emerald-500 mx-auto" />
-                      ) : (
-                        <span className="text-slate-300 font-mono text-[10px]">-</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
 
-        {/* ROI Calculator */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <GlassCard variant="light" className="p-6 border border-slate-200 bg-slate-50/50 shadow-md rounded-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <Calculator className="w-4.5 h-4.5 text-orange-500" />
-              <h3 className="text-base font-black text-slate-900">Calculate Your Savings</h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              {/* Inputs */}
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1 flex justify-between">
-                    <span>Number of Employees</span>
-                    <span className="text-orange-500">{employees}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="10"
-                    max="1000"
-                    step="10"
-                    value={employees}
-                    onChange={(e) => setEmployees(parseInt(e.target.value))}
-                    className="w-full accent-orange-500 cursor-pointer h-1 bg-slate-200 rounded-lg appearance-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1 flex justify-between">
-                    <span>Visitors per Month</span>
-                    <span className="text-orange-500">{visitors}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="50"
-                    max="5000"
-                    step="50"
-                    value={visitors}
-                    onChange={(e) => setVisitors(parseInt(e.target.value))}
-                    className="w-full accent-orange-500 cursor-pointer h-1 bg-slate-200 rounded-lg appearance-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1 flex justify-between">
-                    <span>Active Locations</span>
-                    <span className="text-orange-500">{locations}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="20"
-                    step="1"
-                    value={locations}
-                    onChange={(e) => setLocations(parseInt(e.target.value))}
-                    className="w-full accent-orange-500 cursor-pointer h-1 bg-slate-200 rounded-lg appearance-none"
-                  />
-                </div>
-              </div>
-
-              {/* Outputs */}
-              <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                      Estimated Monthly Savings
-                    </span>
-                    <span className="text-2xl font-mono font-black text-slate-900">
-                      {currency === 'INR' ? '₹' : '$'}
-                      {roiCalculations.monthlySavings.toLocaleString()}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
-                    <div>
-                      <span className="text-[9px] font-mono font-semibold text-slate-400 uppercase block">
-                        Time Saved
-                      </span>
-                      <span className="text-xs font-extrabold text-slate-800">
-                        {roiCalculations.timeSaved} hrs/mo
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[9px] font-mono font-semibold text-slate-400 uppercase block">
-                        Logbooks Saved
-                      </span>
-                      <span className="text-xs font-extrabold text-slate-800">
-                        {currency === 'INR' ? '₹' : '$'}
-                        {roiCalculations.paperSaved.toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-150 flex items-center justify-between">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase">Recommended Tier:</span>
-                  <span className="text-[10px] font-extrabold text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/50">
-                    {roiCalculations.recommended}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
-
-        {/* Included with Every Plan Trust Section */}
-        <div className="mb-16">
-          <div className="text-center mb-6">
-            <h3 className="text-sm font-extrabold text-slate-900">Included with Every Plan</h3>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
-            {[
-              'Secure Cloud Hosting',
-              'Automatic Updates',
-              'Audit Logs',
-              'Mobile Access',
-              'Data Encryption',
-              'Role-Based Access',
-              'Regular Backups',
-            ].map((trust) => (
-              <div key={trust} className="bg-slate-50 border border-slate-150 rounded-xl p-2.5 flex items-center gap-2 text-xs font-semibold text-slate-700">
-                <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                <span>{trust}</span>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Pricing FAQ Section */}
         <div className="max-w-4xl mx-auto mb-16">
@@ -497,23 +320,7 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
           </div>
         </div>
 
-        {/* Bottom CTA Block */}
-        <div className="max-w-4xl mx-auto text-center border-t border-slate-200 pt-10">
-          <h3 className="text-lg font-black text-slate-900 mb-1">
-            Still not sure which plan fits your organization?
-          </h3>
-          <p className="text-xs text-slate-500 mb-4 max-w-xl mx-auto">
-            Schedule a session with our solutions architects to map out custom deployment limits.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button variant="primary" size="sm" onClick={onBookDemo} rightIcon={<ArrowRight className="w-3.5 h-3.5" />}>
-              Schedule Live Demo
-            </Button>
-            <Button variant="outline" size="sm" onClick={onBookDemo}>
-              Contact Sales
-            </Button>
-          </div>
-        </div>
+
       </div>
     </section>
   );
