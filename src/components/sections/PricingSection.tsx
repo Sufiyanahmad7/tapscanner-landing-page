@@ -1,327 +1,234 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Sparkles, X, ShieldCheck, Landmark, Layers, HelpCircle, Calculator, BadgePercent, ArrowRight } from 'lucide-react';
-import { GlassCard } from '@/components/ui/GlassCard';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 
 export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDemo }) => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
 
-  // ROI Calculator inputs
-  const [employees, setEmployees] = useState<number>(50);
-  const [visitors, setVisitors] = useState<number>(200);
-  const [locations, setLocations] = useState<number>(1);
-
-  // Pricing plans data mapping
   const plans = [
     {
       id: 'starter',
       name: 'Starter',
-      bestFor: 'Small Offices & Startups',
-      priceINR: isAnnual ? 4249 : 4999,
-      priceUSD: isAnnual ? 50 : 59,
+      bestFor: 'Best for Small Offices & Startups',
+      priceINR: isAnnual ? '4,249' : '4,999',
+      priceUSD: isAnnual ? '50' : '59',
       features: [
         'Visitor Management',
         'Visitor Approval Workflow',
         'QR Check-In & Check-Out',
         'Digital Visitor Passes',
         'Reports & Dashboard',
-        'Up to 25 Employees',
       ],
-      ctaText: 'Start Free Trial',
-      popular: false,
+      ctaText: 'Book Demo',
+      isBusiness: false,
     },
     {
       id: 'business',
       name: 'Business',
-      bestFor: 'Growing Businesses',
-      priceINR: isAnnual ? 11049 : 12999,
-      priceUSD: isAnnual ? 126 : 149,
+      bestFor: 'Best for Growing Businesses',
+      priceINR: isAnnual ? '11,049' : '12,999',
+      priceUSD: isAnnual ? '126' : '149',
       features: [
         'Everything in Starter',
-        'Employee Movement',
-        'Material Gate Pass',
-        'Contractor Management',
-        'Multi-Branch Support',
-        'Advanced Analytics',
+        'Touchless Pre-Registration',
+        'Smart Visitor Registration',
+        'Watchlist & ID Verification',
+        'Digital NDA & Policy Signing',
+        'Advanced Visitor Analytics',
         'Priority Support',
       ],
       ctaText: 'Book Demo',
-      popular: true,
-      badge: 'Most Popular',
+      isBusiness: true,
     },
     {
       id: 'enterprise',
       name: 'Enterprise',
-      bestFor: 'Large Enterprises',
+      bestFor: 'Best for Large Enterprises',
       priceINR: null,
       priceUSD: null,
       features: [
         'Everything in Business',
-        'Unlimited Employees',
-        'Unlimited Branches',
-        'API Integration',
-        'Single Sign-On (SSO)',
-        'On-Premise or Cloud Deployment',
-        'Dedicated Support',
+        'Unlimited Visitor Records',
+        'Multi-Location Management',
+        'Custom Approval Workflows',
+        'Enterprise Security & Compliance',
+        'Dedicated Customer Success',
       ],
       ctaText: 'Talk to Sales',
-      popular: false,
-    },
-  ];
-
-  // Comparison Matrix Rows
-  const comparisonRows = [
-    { name: 'Visitor Management', starter: true, business: true, enterprise: true },
-    { name: 'QR Check-In', starter: true, business: true, enterprise: true },
-    { name: 'Visitor Approval Workflow', starter: true, business: true, enterprise: true },
-    { name: 'Employee Movement', starter: false, business: true, enterprise: true },
-    { name: 'Material Gate Pass', starter: false, business: true, enterprise: true },
-    { name: 'Contractor Management', starter: false, business: true, enterprise: true },
-    { name: 'Vendor Management', starter: false, business: true, enterprise: true },
-    { name: 'Delivery Management', starter: false, business: true, enterprise: true },
-    { name: 'Emergency Roll Call', starter: false, business: true, enterprise: true },
-    { name: 'Reports', starter: true, business: true, enterprise: true },
-    { name: 'Analytics', starter: false, business: true, enterprise: true },
-    { name: 'Role-Based Access', starter: false, business: true, enterprise: true },
-    { name: 'Multi-Location', starter: false, business: true, enterprise: true },
-    { name: 'API Access', starter: false, business: false, enterprise: true },
-    { name: 'SSO', starter: false, business: false, enterprise: true },
-    { name: 'On-Premise', starter: false, business: false, enterprise: true },
-    { name: 'Dedicated Success Manager', starter: false, business: false, enterprise: true },
-    { name: 'Priority Support', starter: false, business: true, enterprise: true },
-    { name: 'Custom Branding', starter: false, business: true, enterprise: true },
-    { name: 'Audit Logs', starter: false, business: true, enterprise: true },
-    { name: 'Enterprise SLA', starter: false, business: false, enterprise: true },
-  ];
-
-  // Dynamic ROI Calculations
-  const roiCalculations = useMemo(() => {
-    const receptionHrsSaved = Math.round((visitors * 10) / 60);
-    let paperSavings = 0;
-    let laborSavings = 0;
-    let recommended = 'Starter';
-
-    if (currency === 'INR') {
-      paperSavings = Math.round(visitors * 5);
-      laborSavings = receptionHrsSaved * 300;
-    } else {
-      paperSavings = Math.round(visitors * 0.08);
-      laborSavings = receptionHrsSaved * 12;
-    }
-
-    const totalSavings = paperSavings + laborSavings + (locations * (currency === 'INR' ? 1500 : 20));
-
-    if (employees > 250 || locations > 5) {
-      recommended = 'Enterprise';
-    } else if (employees > 25 || locations > 1 || visitors > 100) {
-      recommended = 'Business';
-    } else {
-      recommended = 'Starter';
-    }
-
-    return {
-      monthlySavings: totalSavings,
-      timeSaved: receptionHrsSaved,
-      paperSaved: paperSavings,
-      incidentsAvoided: locations > 0 ? `${locations * 3}% higher security accuracy` : '100% Secure',
-      recommended,
-    };
-  }, [employees, visitors, locations, currency]);
-
-  // Pricing FAQs
-  const pricingFaqs = [
-    {
-      q: 'Can I upgrade anytime?',
-      a: 'Yes, you can upgrade, downgrade, or change your billing terms at any time directly from your administration billing console.',
-    },
-    {
-      q: 'Is there a free trial?',
-      a: 'Absolutely! Our Starter plan comes with a 14-day free trial, allowing you to test QR badge scanning and approval workflows with zero risk.',
-    },
-    {
-      q: 'Do you offer discounts?',
-      a: 'Yes. Selecting an annual subscription gives you a 15% discount compared to monthly cycles. We also provide customized volume discounts for multi-location offices.',
-    },
-    {
-      q: 'Can I host on-premise?',
-      a: 'Yes, our Enterprise plan supports local on-premise container deployment or secure virtual private cloud (VPC) deployments.',
-    },
-    {
-      q: 'How is pricing calculated?',
-      a: 'Starter and Business plans are billed at flat rates per organization according to the location and visitor capacity limits. Enterprise quotes are calculated based on your specific requirements.',
-    },
-    {
-      q: 'Can I customize modules?',
-      a: 'Yes, our Business and Enterprise plans allow you to activate specific modules separately to suit your workflows.',
+      isBusiness: false,
     },
   ];
 
   return (
-    <section className="pt-16 pb-12 bg-white relative overflow-visible" id="pricing">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-6">
-          <Badge variant="orange" size="md" className="mb-2">
-            <BadgePercent className="w-4 h-4 text-orange-500" />
+    <section className="py-20 md:py-28 bg-slate-50/60 relative overflow-hidden" id="pricing">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Badge & Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/60 text-orange-600 font-semibold text-xs uppercase tracking-wider mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
             Flexible Pricing
-          </Badge>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
-            Choose the Right Plan for Your Organization
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-5">
+            Choose the Perfect Plan <br className="hidden sm:inline" />
+            for Every Organization
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium mb-4">
-            Whether you're managing a single office or a global enterprise, TapScanner offers scalable plans that grow with your business.
+          
+          <p className="text-base sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto leading-relaxed">
+            Whether you&apos;re managing a single office or a global enterprise, TapScanner offers scalable visitor management plans that grow with your business.
           </p>
+        </div>
 
-          {/* Pricing Controls: Currency + Cycle */}
-          <div className="flex flex-row items-center justify-center gap-3">
-            {/* Billing Cycle Toggle */}
-            <div className="inline-flex items-center gap-1.5 p-1 bg-slate-100 border border-slate-200 rounded-xl">
-              <button
-                onClick={() => setIsAnnual(false)}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${!isAnnual ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'
-                  }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setIsAnnual(true)}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${isAnnual ? 'bg-orange-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'
-                  }`}
-              >
-                <span>Annual</span>
-                <span className="bg-white/20 text-white text-[8px] px-1 py-0.2 rounded uppercase">
-                  Save 15%
-                </span>
-              </button>
-            </div>
+        {/* Toggles Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 md:mb-16">
+          
+          {/* Billing Cycle Toggle */}
+          <div className="inline-flex items-center p-1.5 bg-slate-200/70 backdrop-blur-sm rounded-full border border-slate-300/50">
+            <button
+              type="button"
+              onClick={() => setIsAnnual(false)}
+              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                !isAnnual
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsAnnual(true)}
+              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                isAnnual
+                  ? 'bg-[#FF6B00] text-white shadow-md shadow-orange-500/20'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span>Annual</span>
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                isAnnual ? 'bg-white/20 text-white' : 'bg-slate-300/80 text-slate-700'
+              }`}>
+                Save 15%
+              </span>
+            </button>
+          </div>
 
-            {/* Currency Toggle */}
-            <div className="inline-flex items-center gap-1.5 p-1 bg-slate-100 border border-slate-200 rounded-xl">
-              <button
-                onClick={() => setCurrency('INR')}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${currency === 'INR' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'
-                  }`}
-              >
-                INR (₹)
-              </button>
-              <button
-                onClick={() => setCurrency('USD')}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${currency === 'USD' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'
-                  }`}
-              >
-                USD ($)
-              </button>
-            </div>
+          {/* Currency Toggle */}
+          <div className="inline-flex items-center p-1.5 bg-slate-200/70 backdrop-blur-sm rounded-full border border-slate-300/50">
+            <button
+              type="button"
+              onClick={() => setCurrency('INR')}
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                currency === 'INR'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              INR (₹)
+            </button>
+            <button
+              type="button"
+              onClick={() => setCurrency('USD')}
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                currency === 'USD'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              USD ($)
+            </button>
           </div>
         </div>
 
-        {/* Pricing Cards Grid - Desktop Viewport Friendly */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch mb-12 max-w-6xl mx-auto overflow-visible pt-6">
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
           {plans.map((plan) => {
             const hasPrice = plan.priceINR !== null;
             const displayPrice = currency === 'INR' ? plan.priceINR : plan.priceUSD;
             const currencySymbol = currency === 'INR' ? '₹' : '$';
 
             return (
-              <GlassCard
+              <motion.div
                 key={plan.id}
-                variant={plan.popular ? 'orangeGlow' : 'light'}
-                className={`p-5 flex flex-col justify-between relative border border-slate-200 rounded-2xl hover:-translate-y-1 transition-all duration-200 ${plan.popular ? 'border-2 border-orange-500 shadow-xl scale-[1.01] z-10' : 'shadow-md shadow-slate-50'
-                  }`}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+                className={`bg-white rounded-[24px] p-8 flex flex-col justify-between relative transition-all duration-300 ${
+                  plan.isBusiness
+                    ? 'border-2 border-orange-500/40 shadow-xl shadow-orange-500/5 ring-1 ring-orange-500/20'
+                    : 'border border-slate-200/80 shadow-lg shadow-slate-200/40 hover:border-slate-300'
+                }`}
               >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
-                    <span className="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                      {plan.badge}
-                    </span>
-                  </div>
-                )}
-
                 <div>
-                  <div className="mb-4 border-b border-slate-100 pb-4">
-                    <h3 className="text-xl font-black text-slate-900 mb-0.5">{plan.name}</h3>
-                    <p className="text-[10px] text-slate-400 font-semibold mb-2">{plan.bestFor}</p>
+                  {/* Card Header */}
+                  <div className="mb-6 border-b border-slate-100 pb-6">
+                    <h3 className="text-2xl font-bold text-slate-900 tracking-tight mb-1">
+                      {plan.name}
+                    </h3>
+                    <p className="text-xs font-medium text-slate-500 mb-5">
+                      {plan.bestFor}
+                    </p>
 
                     {hasPrice ? (
-                      <div className="flex items-baseline gap-1 mt-1">
-                        <span className="text-3xl font-mono font-black text-slate-900 tracking-tight">
-                          {currencySymbol}
-                          {displayPrice?.toLocaleString()}
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                          {currencySymbol}{displayPrice}
                         </span>
-                        <span className="text-[10px] text-slate-400 font-bold">/ month</span>
+                        <span className="text-sm font-medium text-slate-500">
+                          /month
+                        </span>
                       </div>
                     ) : (
-                      <div className="text-2xl font-black text-slate-900 tracking-tight mt-1">
+                      <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                         Contact Sales
                       </div>
                     )}
-                    <span className="text-[9px] text-slate-400 block mt-0.5 font-semibold">
+                    
+                    <span className="text-xs font-medium text-slate-400 block mt-1.5">
                       per organization
                     </span>
                   </div>
 
-                  <div className="space-y-2 mb-6">
+                  {/* Features Header & List */}
+                  <div className="space-y-3.5 mb-8">
+                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      Features
+                    </p>
                     {plan.features.map((feature) => (
-                      <div key={feature} className="flex items-start gap-2 text-[12px] text-slate-700 font-medium">
-                        <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                        <span>{feature}</span>
+                      <div key={feature} className="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                        <div className="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200/70 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                        </div>
+                        <span className="leading-tight">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="space-y-1.5 mt-auto">
-                  <Button
-                    variant={plan.popular ? 'primary' : 'outline'}
-                    size="sm"
+                {/* Card CTA Button */}
+                <div className="pt-4 mt-auto">
+                  <button
+                    type="button"
                     onClick={onBookDemo}
-                    className="w-full justify-center text-xs py-2"
+                    className={`w-full py-3.5 px-6 rounded-full text-sm font-bold transition-all duration-200 cursor-pointer flex items-center justify-center shadow-sm hover:shadow ${
+                      plan.isBusiness
+                        ? 'bg-[#FF6B00] hover:bg-[#e56000] text-white shadow-orange-500/25'
+                        : 'bg-[#FF6B00] hover:bg-[#e56000] text-white'
+                    }`}
                   >
                     {plan.ctaText}
-                  </Button>
-                  {plan.id === 'starter' && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={onBookDemo}
-                      className="w-full justify-center text-slate-400 hover:text-slate-700 text-[10px] py-1"
-                    >
-                      View Features
-                    </Button>
-                  )}
+                  </button>
                 </div>
-              </GlassCard>
+              </motion.div>
             );
           })}
         </div>
-
-
-
-        {/* Pricing FAQ Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="text-center mb-6">
-            <h3 className="text-base sm:text-lg font-extrabold text-slate-900 flex items-center justify-center gap-2">
-              <HelpCircle className="w-4.5 h-4.5 text-orange-500" />
-              Pricing Questions & Answers
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {pricingFaqs.map((faq) => (
-              <GlassCard key={faq.q} variant="light" className="p-4 border border-slate-200">
-                <h4 className="text-xs font-bold text-slate-900 mb-1">{faq.q}</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">{faq.a}</p>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-
 
       </div>
     </section>
   );
 };
+

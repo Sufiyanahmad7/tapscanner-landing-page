@@ -15,7 +15,7 @@ export const FloatingItems: React.FC = () => {
       {/* Bottom Left — Vehicle Entry */}
       <FloatingCard className="bottom-40 left-12" type="vehicle" />
 
-      {/* Bottom Right — Emergency Dashboard */}
+      {/* Bottom Right — Support Ticket */}
       <FloatingCard className="bottom-40 right-12" type="emergency" />
     </div>
   );

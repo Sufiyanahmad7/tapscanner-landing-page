@@ -43,7 +43,7 @@ const CARD_CONFIG = {
     floatDuration: 7,
   },
   emergency: {
-    title: 'Emergency Dashboard',
+    title: 'Support Ticket',
     description: '284 / 284 occupants safe.',
     icon: ShieldCheck,
     iconBg: 'bg-violet-100',
