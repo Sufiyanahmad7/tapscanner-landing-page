@@ -401,7 +401,7 @@ export const INDUSTRY_SOLUTIONS: IndustryItem[] = [
     headline: 'Guest Experience & High-Volume Lobby Automation',
     description: 'Eliminate reception bottlenecks across commercial towers. Provide visitor pre-registration, automated elevator floor permissions, and seamless host notification.',
     iconName: 'Building',
-    benefits: ['Touchless QR self-checkin', 'Elevator & Turnstile Integration', 'VIP arrival alerts', 'Multi-tenant isolation'],
+    benefits: ['Touchless QR self-checkin', 'Smart Access Control', 'Live Visitor Status', 'Multi-Location Management'],
     stats: { label: 'Lobby Queue Reduction', value: '90%' },
   },
   {
@@ -410,7 +410,7 @@ export const INDUSTRY_SOLUTIONS: IndustryItem[] = [
     headline: 'Strict Gate Pass Asset Control & Contractor Verification',
     description: 'Safeguard plant perimeters. Verify contractor safety orientation, digitize returnable material gate passes, and track truck logistics entry.',
     iconName: 'Factory',
-    benefits: ['Permit to Work (PTW) checks', 'Returnable asset overdue alerts', 'Vehicle license plate scan', 'Safety orientation check-off'],
+    benefits: ['Industrial Visitor Management', 'Material Gate Passes', 'Vehicle Entry Management', 'Contractor Verification'],
     stats: { label: 'Asset Loss Reduction', value: '95%' },
   },
   {
@@ -419,7 +419,7 @@ export const INDUSTRY_SOLUTIONS: IndustryItem[] = [
     headline: 'Patient Visitor Access Control & Restricted Zone Security',
     description: 'Manage high visitor footfall while safeguarding ICU, pharmacy, and laboratory access. Limit visitor count per bed and enforce safety compliance.',
     iconName: 'Hospital',
-    benefits: ['Max visitor per patient enforcement', 'Restricted ward QR passes', 'Contractor credentials verification', 'Emergency evac readiness'],
+    benefits: ['Patient Visit Management', 'Doctor Appointment Check-In', 'Digital Visitor Passes', 'Real-Time Visit Tracking'],
     stats: { label: 'Zone Control Compliance', value: '100%' },
   },
   {
@@ -428,7 +428,7 @@ export const INDUSTRY_SOLUTIONS: IndustryItem[] = [
     headline: 'Student Leave Gate Passes & Guardian Identity Verification',
     description: 'Secure university and school campuses. Verify parents before student pick-up, manage host hostel gate passes, and audit staff movements.',
     iconName: 'GraduationCap',
-    benefits: ['Parent OTP verification', 'Out-pass approval workflow', 'Campus perimeter security', 'Real-time headcount logs'],
+    benefits: ['Visitor & Parent Management', 'Student Gate Passes', 'Guardian Verification', 'Campus Visit Tracking'],
     stats: { label: 'Campus Safety Rating', value: '99.8%' },
   },
   {
@@ -437,7 +437,7 @@ export const INDUSTRY_SOLUTIONS: IndustryItem[] = [
     headline: 'Driver Check-in, Parcel Hubs & Fleet Movement Analytics',
     description: 'Speed up loading dock turnaround. Digitally log truck drivers, scan incoming courier shipments, and automate driver gate clearance.',
     iconName: 'Truck',
-    benefits: ['Driver QR quick-scan', 'Parcel OCR auto-notify', 'Dock scheduling sync', 'Material delivery audit'],
+    benefits: ['Driver Check-In', 'Visitor Registration', 'Vehicle Entry Management', 'Delivery Gate Passes'],
     stats: { label: 'Dock Wait Speedup', value: '65%' },
   },
 ];
