@@ -12,20 +12,24 @@ import { Badge } from '@/components/ui/Badge';
 import { GlassCard } from '@/components/ui/GlassCard';
 
 const formSchema = z.object({
-  companyName: z.string().min(2, 'Company name is required'),
+  companyName: z.string().min(1, 'Company name is required').min(2, 'Company name must be at least 2 characters'),
   industry: z.string().min(1, 'Please select an industry'),
-  country: z.string().min(2, 'Country is required'),
-  city: z.string().min(2, 'City is required'),
+  country: z.string().min(1, 'Country is required').min(2, 'Country must be at least 2 characters'),
+  city: z.string().min(1, 'City is required').min(2, 'City must be at least 2 characters'),
   organizationSize: z.string().min(1, 'Please select organization size'),
   locationCount: z.string().min(1, 'Please select number of locations'),
   employeeCount: z.string().min(1, 'Please select total employee count'),
   interestedModules: z.array(z.string()).optional(),
-  contactPerson: z.string().min(2, 'Full name is required'),
-  businessEmail: z.string().email('Invalid email address').refine(
-    (email) => !email.endsWith('@gmail.com') && !email.endsWith('@yahoo.com') && !email.endsWith('@hotmail.com'),
-    { message: 'Please use your corporate work email for enterprise access' }
-  ),
-  phoneNumber: z.string().min(7, 'Valid phone number is required'),
+  contactPerson: z.string().min(1, 'Full contact name is required').min(2, 'Full contact name must be at least 2 characters'),
+  businessEmail: z
+    .string()
+    .min(1, 'Business email is required')
+    .email('Invalid email address')
+    .refine(
+      (email) => !email.endsWith('@gmail.com') && !email.endsWith('@yahoo.com') && !email.endsWith('@hotmail.com'),
+      { message: 'Please use your corporate work email for enterprise access' }
+    ),
+  phoneNumber: z.string().min(1, 'Phone number is required').min(7, 'Valid phone number is required'),
   message: z.string().optional(),
   consent: z.boolean().refine((val) => val === true, 'Consent is required to process request'),
 });
@@ -173,18 +177,24 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">
                             Industry Vertical *
                           </label>
-                          <select
+                          <input
                             {...register('industry')}
+                            list="industry-suggestions"
+                            placeholder="Select or enter industry..."
                             className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-orange-500/40 focus:outline-none"
-                          >
-                            <option value="Enterprise">Enterprise Corporate</option>
-                            <option value="Manufacturing">Manufacturing & Plant</option>
-                            <option value="IT">IT & Tech Park</option>
-                            <option value="Healthcare">Healthcare & Hospital</option>
-                            <option value="Education">Educational Institution</option>
-                            <option value="Logistics">Warehousing & Logistics</option>
-                            <option value="Government">Government Security</option>
-                          </select>
+                          />
+                          <datalist id="industry-suggestions">
+                            <option value="Enterprise Corporate" />
+                            <option value="Manufacturing & Plant" />
+                            <option value="IT & Tech Park" />
+                            <option value="Healthcare & Hospital" />
+                            <option value="Educational Institution" />
+                            <option value="Warehousing & Logistics" />
+                            <option value="Government Security" />
+                          </datalist>
+                          {errors.industry && (
+                            <p className="text-xs text-red-500 mt-1">{errors.industry.message}</p>
+                          )}
                         </div>
 
                         <div>
@@ -236,46 +246,64 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">
                             Organization Size
                           </label>
-                          <select
+                          <input
                             {...register('organizationSize')}
+                            list="org-size-suggestions"
+                            placeholder="e.g. 500 employees or select..."
                             className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-orange-500/40 focus:outline-none"
-                          >
-                            <option value="1-50">1-50 employees</option>
-                            <option value="51-200">51-200 employees</option>
-                            <option value="201-1000">201-1,000 employees</option>
-                            <option value="1000-5000">1,000-5,000 employees</option>
-                            <option value="5000+">5,000+ employees</option>
-                          </select>
+                          />
+                          <datalist id="org-size-suggestions">
+                            <option value="1-50 employees" />
+                            <option value="51-200 employees" />
+                            <option value="201-1,000 employees" />
+                            <option value="1,000-5,000 employees" />
+                            <option value="5,000+ employees" />
+                          </datalist>
+                          {errors.organizationSize && (
+                            <p className="text-xs text-red-500 mt-1">{errors.organizationSize.message}</p>
+                          )}
                         </div>
 
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">
                             Facility Locations / Gates
                           </label>
-                          <select
+                          <input
                             {...register('locationCount')}
+                            list="location-suggestions"
+                            placeholder="Enter number or select..."
                             className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-orange-500/40 focus:outline-none"
-                          >
-                            <option value="1 Location">Single Location / Gate</option>
-                            <option value="2-5 Locations">2 - 5 Locations</option>
-                            <option value="6-20 Locations">6 - 20 Locations</option>
-                            <option value="20+ Locations">20+ Global Facilities</option>
-                          </select>
+                          />
+                          <datalist id="location-suggestions">
+                            <option value="1 Location / Gate" />
+                            <option value="2 - 5 Locations" />
+                            <option value="6 - 20 Locations" />
+                            <option value="20+ Global Facilities" />
+                          </datalist>
+                          {errors.locationCount && (
+                            <p className="text-xs text-red-500 mt-1">{errors.locationCount.message}</p>
+                          )}
                         </div>
 
                         <div>
                           <label className="block text-xs font-bold text-slate-700 mb-1.5">
                             Daily Expected Visitors
                           </label>
-                          <select
+                          <input
                             {...register('employeeCount')}
+                            list="visitor-suggestions"
+                            placeholder="Enter number or select..."
                             className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-orange-500/40 focus:outline-none"
-                          >
-                            <option value="< 50 / day">&lt; 50 visitors / day</option>
-                            <option value="50-300 / day">50 - 300 visitors / day</option>
-                            <option value="300-1000 / day">300 - 1,000 visitors / day</option>
-                            <option value="1000+ / day">1,000+ high volume daily</option>
-                          </select>
+                          />
+                          <datalist id="visitor-suggestions">
+                            <option value="< 50 visitors / day" />
+                            <option value="50 - 300 visitors / day" />
+                            <option value="300 - 1,000 visitors / day" />
+                            <option value="1,000+ high volume daily" />
+                          </datalist>
+                          {errors.employeeCount && (
+                            <p className="text-xs text-red-500 mt-1">{errors.employeeCount.message}</p>
+                          )}
                         </div>
                       </div>
                     </motion.div>

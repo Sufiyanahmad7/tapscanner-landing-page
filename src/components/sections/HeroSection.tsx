@@ -29,8 +29,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenDemoModal }) => 
       {/* Layer 2 — White Arc dome over gradient */}
       <Arc />
 
-      {/* Layer 3 — Floating glassmorphism cards (pointer-events-none) */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-visible">
+      {/* Layer 3 — Floating glassmorphism cards (above hero content for hover) */}
+      <div className="absolute inset-0 z-30 pointer-events-none overflow-visible">
         <FloatingItems />
       </div>
 

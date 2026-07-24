@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { QrCode, UserCheck, Car, ShieldCheck } from 'lucide-react';
 
 type CardType = 'visitor' | 'approval' | 'vehicle' | 'emergency';
@@ -59,18 +59,87 @@ export const FloatingCard: React.FC<FloatingCardProps> = ({ className = '', type
   const { title, description, icon: Icon, iconBg, iconColor, cardBg, cardBorder, floatDuration } =
     CARD_CONFIG[type];
 
+  if (type === 'approval') {
+    return (
+      <motion.div
+        className={`absolute hidden xl:block pointer-events-auto ${className}`}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: floatDuration, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <motion.div
+          layout
+          onHoverStart={() => setHovered(true)}
+          onHoverEnd={() => setHovered(false)}
+          style={{
+            width: '260px',
+            borderRadius: '20px',
+            background: cardBg,
+            border: `1px solid ${cardBorder}`,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.04)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            cursor: 'default',
+          }}
+          transition={{ layout: { duration: 0.25, ease: 'easeOut' } }}
+        >
+          {/* Header — always visible, same size as other cards */}
+          <motion.div layout="position" className="flex items-center gap-3 px-4 py-3.5">
+            <div className={`h-9 w-9 rounded-full flex items-center justify-center shrink-0 ${iconBg}`}>
+              <Icon className={`h-4 w-4 ${iconColor}`} />
+            </div>
+            <span className="text-[13px] font-semibold text-slate-800 leading-tight">{title}</span>
+          </motion.div>
+
+          {/* Hidden content — conditionally rendered on hover */}
+          <AnimatePresence>
+            {hovered && (
+              <motion.div
+                key="approval-details"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                style={{ overflow: 'hidden' }}
+              >
+                <div
+                  style={{
+                    height: '1px',
+                    background: 'rgba(0,0,0,0.07)',
+                    margin: '0 16px 10px',
+                  }}
+                />
+                <div style={{ padding: '0 16px 14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span className="relative flex h-2.5 w-2.5 shrink-0">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 animate-ping opacity-70"></span>
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500"></span>
+                    </span>
+                    <span style={{ fontSize: '12px', color: '#64748b' }}>
+                      Requested for Approval
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+                    <span style={{ fontSize: '12px', color: '#334155', fontWeight: 500 }}>
+                      Approved
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </motion.div>
+    );
+  }
+
+  /* ── All other card types — original hover pattern ── */
   return (
-    /* ── Outer float wrapper — continuous y oscillation ── */
     <motion.div
       className={`absolute hidden xl:block pointer-events-auto ${className}`}
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: floatDuration, repeat: Infinity, ease: 'easeInOut' }}
     >
-      {/*
-        ── Card shell ──
-        • Plain <div> so onMouseEnter/Leave fire 100% reliably
-        • NO overflow:hidden here — card must grow freely downward
-      */}
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -83,7 +152,6 @@ export const FloatingCard: React.FC<FloatingCardProps> = ({ className = '', type
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
           cursor: 'default',
-          /* intentionally no overflow:hidden */
         }}
       >
         {/* Collapsed header — always visible */}
@@ -94,13 +162,6 @@ export const FloatingCard: React.FC<FloatingCardProps> = ({ className = '', type
           <span className="text-[13px] font-semibold text-slate-800 leading-tight">{title}</span>
         </div>
 
-        {/*
-          ── Expanding description ──
-          • Always mounted (no AnimatePresence) — avoids unmount race with layout
-          • overflow:hidden only on THIS div so clipping happens during animation
-          • height 0 → auto is handled by Framer Motion's animate prop
-          • opacity animates in parallel
-        */}
         <motion.div
           animate={
             hovered
