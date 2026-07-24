@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -16,6 +15,7 @@ export const Arc: React.FC = () => {
           w-[170vmax]
           rounded-full
           bg-white
+          shadow-[0_-30px_100px_rgba(249,115,22,0.18)]
         "
         aria-hidden="true"
       />
