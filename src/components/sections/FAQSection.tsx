@@ -23,15 +23,11 @@ export const FAQSection: React.FC = () => {
   });
 
   return (
-    <section className="py-14 bg-slate-50 relative overflow-hidden" id="faq">
+    <section className="py-8 bg-slate-50 relative overflow-hidden" id="faq">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <Badge variant="orange" size="md" className="mb-4">
-            <HelpCircle className="w-4 h-4 text-orange-500" />
-            Frequently Asked Questions
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-            Everything You Need to Know About TapScanner.
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
+            Everything You Need to Know About TapScanner
           </h2>
           <p className="text-base text-slate-600 font-medium">
             Have questions about implementation, multi-tenant setup, hardware, or GDPR compliance?

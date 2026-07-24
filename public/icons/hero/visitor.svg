@@ -1,0 +1,27 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vis_card" x1="10" y1="12" x2="54" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8A00"/>
+      <stop offset="1" stop-color="#E05600"/>
+    </linearGradient>
+    <linearGradient id="vis_badge" x1="20" y1="18" x2="44" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF7ED"/>
+    </linearGradient>
+    <filter id="vis_shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#E05600" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Lanyard Strap -->
+  <path d="M26 4L32 14L38 4" stroke="#FFD8A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="28" y="12" width="8" height="4" rx="1.5" fill="#C2410C"/>
+
+  <!-- Main Visitor Badge Card -->
+  <rect x="10" y="14" width="44" height="44" rx="12" fill="url(#vis_card)" filter="url(#vis_shadow)"/>
+  <rect x="15" y="19" width="34" height="34" rx="8" fill="url(#vis_badge)"/>
+
+  <!-- Avatar Silhouette -->
+  <circle cx="32" cy="29" r="6" fill="#FF8A00"/>
+  <path d="M21 44C21 38.4772 25.9249 34 32 34C38.0751 34 43 38.4772 43 44H21Z" fill="#FF8A00"/>
+</svg>

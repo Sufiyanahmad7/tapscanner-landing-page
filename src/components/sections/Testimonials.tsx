@@ -8,15 +8,11 @@ import { Badge } from '@/components/ui/Badge';
 
 export const Testimonials: React.FC = () => {
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
+    <section className="py-8 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <Badge variant="orange" size="md" className="mb-4">
-            <Quote className="w-4 h-4 text-orange-500" />
-            Verified Customer Stories
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-            Proven ROI Across Global Facilities.
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
+            Proven ROI Across Global Facilities
           </h2>
           <p className="text-base md:text-lg text-slate-600 font-medium">
             See how enterprise security and workplace experience leads rely on TapScanner every day.

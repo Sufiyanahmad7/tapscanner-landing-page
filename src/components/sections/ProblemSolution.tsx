@@ -42,7 +42,7 @@ export const ProblemSolution: React.FC = () => {
             </Badge>
           </div> */}
 
-          <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
             Why Modern Enterprises Choose TapScanner
           </h2>
           {/* 

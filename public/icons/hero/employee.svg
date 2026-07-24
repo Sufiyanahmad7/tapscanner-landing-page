@@ -1,0 +1,27 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="emp_card" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="emp_inner" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#ECFDF5"/>
+    </linearGradient>
+    <filter id="emp_shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#047857" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Lanyard Clip -->
+  <rect x="26" y="4" width="12" height="6" rx="2" fill="#047857"/>
+
+  <!-- Badge Body -->
+  <rect x="10" y="8" width="44" height="50" rx="10" fill="url(#emp_card)" filter="url(#emp_shadow)"/>
+  <rect x="14" y="14" width="36" height="38" rx="7" fill="url(#emp_inner)"/>
+
+  <!-- User Avatar & Details -->
+  <circle cx="32" cy="27" r="6" fill="#10B981"/>
+  <path d="M22 41C22 36.0294 26.4772 32 32 32C37.5228 32 42 36.0294 42 41H22Z" fill="#10B981"/>
+  <rect x="22" y="44" width="20" height="3" rx="1.5" fill="#A7F3D0"/>
+</svg>

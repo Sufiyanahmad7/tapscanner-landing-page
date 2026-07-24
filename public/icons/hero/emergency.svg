@@ -1,0 +1,26 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="emg_bg" x1="12" y1="8" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="emg_bell" x1="16" y1="12" x2="48" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDD6FE"/>
+      <stop offset="1" stop-color="#C4B5FD"/>
+    </linearGradient>
+    <filter id="emg_shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#6D28D9" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Alert Ring -->
+  <rect x="8" y="8" width="48" height="48" rx="14" fill="url(#emg_bg)" filter="url(#emg_shadow)"/>
+
+  <!-- Support Headset & Bell Symbol -->
+  <path d="M18 30C18 22.268 24.268 16 32 16C39.732 16 46 22.268 46 30V36H18V30Z" fill="url(#emg_bell)"/>
+  <path d="M14 36H50V40C50 41.1 49.1 42 48 42H16C14.9 42 14 41.1 14 40V36Z" fill="#FFFFFF"/>
+  <circle cx="32" cy="46" r="3.5" fill="#FACC15"/>
+
+  <!-- Pulse Rings -->
+  <circle cx="32" cy="11" r="2.5" fill="#FACC15"/>
+</svg>

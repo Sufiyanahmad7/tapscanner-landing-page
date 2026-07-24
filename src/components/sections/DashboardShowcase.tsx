@@ -13,14 +13,10 @@ export const DashboardShowcase: React.FC<{ onBookDemo?: () => void }> = ({ onBoo
   const activeTab = DASHBOARD_TABS.find((t) => t.id === activeTabId) || DASHBOARD_TABS[0];
 
   return (
-    <section className="py-14 bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
+    <section className="py-8 bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <Badge variant="orange" size="md" className="mb-4">
-            <LayoutDashboard className="w-4 h-4 text-orange-500" />
-            Role-Based Admin Console
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
             One Platform for Every Team
           </h2>
           <p className="text-base md:text-lg text-slate-600 font-medium">
