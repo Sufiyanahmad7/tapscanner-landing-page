@@ -13,14 +13,15 @@ export const DashboardShowcase: React.FC<{ onBookDemo?: () => void }> = ({ onBoo
   const activeTab = DASHBOARD_TABS.find((t) => t.id === activeTabId) || DASHBOARD_TABS[0];
 
   return (
-    <section className="py-8 bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
+    <section className="py-10 bg-white text-slate-900 relative overflow-hidden border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
             One Platform for Every Team
           </h2>
-          <p className="text-base md:text-lg text-slate-600 font-medium">
-            From front desk receptionists to CISO security leads, TapScanner delivers real-time visibility tailored to each role.
+
+          <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600">
+            Give every team from reception to security the tools they need to manage visitors with confidence.
           </p>
         </div>
 
@@ -32,11 +33,10 @@ export const DashboardShowcase: React.FC<{ onBookDemo?: () => void }> = ({ onBoo
               <button
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
-                className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all cursor-pointer border ${
-                  isActive
-                    ? 'bg-orange-500 text-white border-orange-400 shadow-lg shadow-orange-500/25'
-                    : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200/60 hover:text-slate-900'
-                }`}
+                className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all cursor-pointer border ${isActive
+                  ? 'bg-orange-500 text-white border-orange-400 shadow-lg shadow-orange-500/25'
+                  : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200/60 hover:text-slate-900'
+                  }`}
               >
                 {tab.label}
               </button>
@@ -109,13 +109,12 @@ export const DashboardShowcase: React.FC<{ onBookDemo?: () => void }> = ({ onBoo
                     </div>
 
                     <span
-                      className={`font-mono text-[10px] px-2.5 py-1 rounded font-bold shrink-0 ${
-                        activity.status === 'Approved'
-                          ? 'bg-emerald-500/20 text-emerald-600 border border-emerald-500/30'
-                          : activity.status === 'Flagged'
+                      className={`font-mono text-[10px] px-2.5 py-1 rounded font-bold shrink-0 ${activity.status === 'Approved'
+                        ? 'bg-emerald-500/20 text-emerald-600 border border-emerald-500/30'
+                        : activity.status === 'Flagged'
                           ? 'bg-red-500/20 text-red-600 border border-red-500/30'
                           : 'bg-blue-500/20 text-blue-600 border border-blue-500/30'
-                      }`}
+                        }`}
                     >
                       {activity.status}
                     </span>

@@ -45,8 +45,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemoModal }) => {
               <Building2 className="w-4.5 h-4.5" />
             </div>
             <span className="text-lg font-black tracking-tight text-slate-900 leading-none">
-              Tap<span className="text-orange-500">Scanner</span>
-            </span>
+              TapScanner</span>
+
           </a>
 
           {/* Divider */}
@@ -95,52 +95,54 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemoModal }) => {
             {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
-      </motion.header>
+      </motion.header >
 
       {/* Mobile Dropdown Menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.97 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="fixed top-[108px] left-1/2 -translate-x-1/2 z-[99] w-72 rounded-3xl overflow-hidden shadow-2xl"
-            style={{
-              background: 'rgba(255,255,255,0.97)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255,255,255,0.6)',
-            }}
-          >
-            <div className="p-4 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-2">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenDemoModal();
-                  }}
-                  className="w-full px-4 py-3 rounded-xl font-semibold text-sm text-white cursor-pointer transition-all duration-200"
-                  style={{
-                    background: 'linear-gradient(135deg, #f97316 0%, #ea580c 50%, #f59e0b 100%)',
-                  }}
-                >
-                  Book Demo
-                </button>
+        {
+          mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.97 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="fixed top-[108px] left-1/2 -translate-x-1/2 z-[99] w-72 rounded-3xl overflow-hidden shadow-2xl"
+              style={{
+                background: 'rgba(255,255,255,0.97)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.6)',
+              }}
+            >
+              <div className="p-4 space-y-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <div className="pt-2">
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onOpenDemoModal();
+                    }}
+                    className="w-full px-4 py-3 rounded-xl font-semibold text-sm text-white cursor-pointer transition-all duration-200"
+                    style={{
+                      background: 'linear-gradient(135deg, #f97316 0%, #ea580c 50%, #f59e0b 100%)',
+                    }}
+                  >
+                    Book Demo
+                  </button>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )
+        }
+      </AnimatePresence >
     </>
   );
 };

@@ -22,14 +22,16 @@ export const IndustrySolutions: React.FC<{ onBookDemo?: () => void }> = ({ onBoo
   const activeIndustry = INDUSTRY_SOLUTIONS.find((i) => i.id === activeIndustryId) || INDUSTRY_SOLUTIONS[0];
 
   return (
-    <section className="py-8 bg-white relative overflow-hidden" id="solutions">
+    <section className="py-10 bg-white relative overflow-hidden" id="solutions">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
             Built for Every Industry
           </h2>
-          <p className="text-base md:text-lg text-slate-600 font-medium">
-            Whether managing high-volume commercial tower lobbies or strict manufacturing plant gates, TapScanner adapts to your compliance standards.
+
+          <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600">
+            From corporate offices to manufacturing facilities, TapScanner adapts to
+            your visitor management and security requirements.
           </p>
         </div>
 
@@ -41,11 +43,10 @@ export const IndustrySolutions: React.FC<{ onBookDemo?: () => void }> = ({ onBoo
               <button
                 key={ind.id}
                 onClick={() => setActiveIndustryId(ind.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-xs md:text-sm transition-all cursor-pointer border ${
-                  isActive
+                className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-xs md:text-sm transition-all cursor-pointer border ${isActive
                     ? 'bg-slate-900 text-white border-slate-800 shadow-xl shadow-slate-900/20 scale-[1.02]'
                     : 'bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200/60'
-                }`}
+                  }`}
               >
                 <span className={isActive ? 'text-orange-400' : 'text-slate-500'}>
                   {iconMap[ind.iconName]}

@@ -156,14 +156,16 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
     VISITOR_MANAGEMENT_FEATURES.find((f) => f.id === activeTabId) || VISITOR_MANAGEMENT_FEATURES[0];
 
   return (
-    <section className="py-8 bg-slate-50 relative overflow-hidden" id="modules">
+    <section className="py-10 bg-slate-50 relative overflow-hidden" id="modules">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
             Everything You Need to Manage Visitors
           </h2>
-          <p className="text-base md:text-lg text-slate-600 font-medium">
-            Streamline lobby check-ins, digitize NDAs, automate host arrival pings, print badges instantly, and maintain 100% audit-ready security logs.
+
+          <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600">
+            Manage visitor registrations, host approvals, badge printing, and
+            audit-ready security from one intelligent platform.
           </p>
         </div>
 
@@ -177,18 +179,16 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
                 <button
                   key={feature.id}
                   onClick={() => setActiveTabId(feature.id)}
-                  className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-start gap-4 cursor-pointer border ${
-                    isActive
-                      ? `${feature.activeBgColor} shadow-xl shadow-slate-200/50 scale-[1.01]`
-                      : `${feature.bgColor} border-slate-200/60 text-slate-700`
-                  }`}
+                  className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-start gap-4 cursor-pointer border ${isActive
+                    ? `${feature.activeBgColor} shadow-xl shadow-slate-200/50 scale-[1.01]`
+                    : `${feature.bgColor} border-slate-200/60 text-slate-700`
+                    }`}
                 >
                   <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                      isActive
-                        ? feature.iconBgActive
-                        : 'bg-white/80 text-slate-600 shadow-sm'
-                    }`}
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isActive
+                      ? feature.iconBgActive
+                      : 'bg-white/80 text-slate-600 shadow-sm'
+                      }`}
                   >
                     {iconComponents[feature.iconName]}
                   </div>
@@ -196,9 +196,8 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2 mb-1">
                       <h4
-                        className={`text-base font-bold truncate ${
-                          isActive ? 'text-slate-900' : 'text-slate-800'
-                        }`}
+                        className={`text-base font-bold truncate ${isActive ? 'text-slate-900' : 'text-slate-800'
+                          }`}
                       >
                         {feature.title}
                       </h4>

@@ -23,14 +23,16 @@ export const FAQSection: React.FC = () => {
   });
 
   return (
-    <section className="py-8 bg-slate-50 relative overflow-hidden" id="faq">
+    <section className="py-10 bg-slate-50 relative overflow-hidden" id="faq">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
-            Everything You Need to Know About TapScanner
+        <div className="text-center mb-10">
+          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
+            Frequently Asked Questions
           </h2>
-          <p className="text-base text-slate-600 font-medium">
-            Have questions about implementation, multi-tenant setup, hardware, or GDPR compliance?
+
+          <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600">
+            Find answers to common questions about TapScanner, including setup,
+            security, visitor management, and platform features.
           </p>
         </div>
 
@@ -52,11 +54,10 @@ export const FAQSection: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                  selectedCategory === cat
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${selectedCategory === cat
                     ? 'bg-slate-900 text-white shadow-sm'
                     : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -82,9 +83,8 @@ export const FAQSection: React.FC = () => {
                       {faq.question}
                     </h3>
                     <div
-                      className={`w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 bg-orange-500 text-white' : 'text-slate-600'
-                      }`}
+                      className={`w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-orange-500 text-white' : 'text-slate-600'
+                        }`}
                     >
                       <ChevronDown className="w-4 h-4" />
                     </div>

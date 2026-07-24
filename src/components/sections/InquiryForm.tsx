@@ -11,27 +11,34 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { GlassCard } from '@/components/ui/GlassCard';
 
+const formatErrorMessage = (msg?: string) => {
+  if (!msg || msg.toLowerCase().includes('invalid input')) {
+    return 'Mandatory field';
+  }
+  return msg;
+};
+
 const formSchema = z.object({
-  companyName: z.string().min(1, 'Company name is required').min(2, 'Company name must be at least 2 characters'),
-  industry: z.string().min(1, 'Please select an industry'),
-  country: z.string().min(1, 'Country is required').min(2, 'Country must be at least 2 characters'),
-  city: z.string().min(1, 'City is required').min(2, 'City must be at least 2 characters'),
-  organizationSize: z.string().min(1, 'Please select organization size'),
-  locationCount: z.string().min(1, 'Please select number of locations'),
-  employeeCount: z.string().min(1, 'Please select total employee count'),
+  companyName: z.string('Mandatory field').min(1, 'Mandatory field'),
+  industry: z.string('Mandatory field').min(1, 'Mandatory field'),
+  country: z.string('Mandatory field').min(1, 'Mandatory field'),
+  city: z.string('Mandatory field').min(1, 'Mandatory field'),
+  organizationSize: z.string('Mandatory field').min(1, 'Mandatory field'),
+  locationCount: z.string('Mandatory field').min(1, 'Mandatory field'),
+  employeeCount: z.string('Mandatory field').min(1, 'Mandatory field'),
   interestedModules: z.array(z.string()).optional(),
-  contactPerson: z.string().min(1, 'Full contact name is required').min(2, 'Full contact name must be at least 2 characters'),
+  contactPerson: z.string('Mandatory field').min(1, 'Mandatory field'),
   businessEmail: z
-    .string()
-    .min(1, 'Business email is required')
-    .email('Invalid email address')
+    .string('Mandatory field')
+    .min(1, 'Mandatory field')
+    .email('Please enter a valid work email')
     .refine(
       (email) => !email.endsWith('@gmail.com') && !email.endsWith('@yahoo.com') && !email.endsWith('@hotmail.com'),
       { message: 'Please use your corporate work email for enterprise access' }
     ),
-  phoneNumber: z.string().min(1, 'Phone number is required').min(7, 'Valid phone number is required'),
+  phoneNumber: z.string('Mandatory field').min(1, 'Mandatory field'),
   message: z.string().optional(),
-  consent: z.boolean().refine((val) => val === true, 'Consent is required to process request'),
+  consent: z.boolean().refine((val) => val === true, 'Mandatory field'),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -86,15 +93,20 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
   };
 
   return (
-    <section className={isModal ? "" : "py-8 bg-white relative overflow-hidden"} id={isModal ? undefined : "demo-inquiry"}>
+    <section
+      className={isModal ? "" : "py-10 bg-white relative overflow-hidden"}
+      id={isModal ? undefined : "demo-inquiry"}
+    >
       <div className={isModal ? "w-full p-4 md:p-6" : "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"}>
         {!isModal ? (
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
-              Request a Personalized Enterprise Demo
+          <div className="text-center mb-10">
+            <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
+              Request a Personalized Demo
             </h2>
-            <p className="text-base text-slate-600 font-medium">
-              Discover how TapScanner transforms visitor security, gate passes, and audit compliance across your facilities.
+
+            <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600">
+              See how TapScanner streamlines visitor management, strengthens workplace
+              security, and delivers a seamless check-in experience.
             </p>
           </div>
         ) : (
@@ -113,13 +125,12 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                 {[1, 2, 3].map((stepNum) => (
                   <div key={stepNum} className="flex items-center gap-2">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
-                        currentStep === stepNum
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${currentStep === stepNum
                           ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
                           : currentStep > stepNum
-                          ? 'bg-emerald-500 text-white'
-                          : 'bg-slate-100 text-slate-500'
-                      }`}
+                            ? 'bg-emerald-500 text-white'
+                            : 'bg-slate-100 text-slate-500'
+                        }`}
                     >
                       {currentStep > stepNum ? <CheckCircle2 className="w-4 h-4" /> : stepNum}
                     </div>
@@ -127,8 +138,8 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                       {stepNum === 1
                         ? 'Company'
                         : stepNum === 2
-                        ? 'Scale'
-                        : 'Contact'}
+                          ? 'Scale'
+                          : 'Contact'}
                     </span>
                   </div>
                 ))}
@@ -324,7 +335,9 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                           className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-orange-500/40 focus:outline-none"
                         />
                         {errors.contactPerson && (
-                          <p className="text-xs text-red-500 mt-1">{errors.contactPerson.message}</p>
+                          <p className="text-xs text-red-500 mt-1">
+                            {formatErrorMessage(errors.contactPerson.message)}
+                          </p>
                         )}
                       </div>
 
@@ -340,7 +353,7 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                           />
                           {errors.businessEmail && (
                             <p className="text-xs text-red-500 mt-1">
-                              {errors.businessEmail.message}
+                              {formatErrorMessage(errors.businessEmail.message)}
                             </p>
                           )}
                         </div>
@@ -355,7 +368,9 @@ export const InquiryForm: React.FC<{ isModal?: boolean }> = ({ isModal = false }
                             className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-orange-500/40 focus:outline-none"
                           />
                           {errors.phoneNumber && (
-                            <p className="text-xs text-red-500 mt-1">{errors.phoneNumber.message}</p>
+                            <p className="text-xs text-red-500 mt-1">
+                              {formatErrorMessage(errors.phoneNumber.message)}
+                            </p>
                           )}
                         </div>
                       </div>

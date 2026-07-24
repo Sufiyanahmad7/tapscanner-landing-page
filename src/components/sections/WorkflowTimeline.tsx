@@ -84,16 +84,17 @@ export const WorkflowTimeline: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="text-center max-w-3xl mx-auto mb-12 lg:mb-14"
         >
+
           <motion.h2
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:mb-4"
+            className="text-2xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900 mb-2"
           >
             How Touchless Check-In Works in 4 Steps
           </motion.h2>
 
           <motion.p
             variants={fadeInUp}
-            className="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed"
+            className="mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600"
           >
             From visitor registration to secure QR-based check-in, TapScanner automates the complete visitor journey through one intelligent workflow.
           </motion.p>

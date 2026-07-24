@@ -65,47 +65,45 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
   return (
     <section className="py-8 bg-slate-50/60 relative overflow-hidden" id="pricing">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
-            Choose the Perfect Plan for Every Organization
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
+            Choose the Right Plan for Your Organization
           </h2>
-          
-          <p className="text-base sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto leading-relaxed">
-            Whether you&apos;re managing a single office or a global enterprise, TapScanner offers scalable visitor management plans that grow with your business.
+
+          <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600">
+            Flexible pricing for businesses of every size, from growing teams to
+            enterprise organizations.
           </p>
         </div>
 
         {/* Toggles Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 md:mb-16">
-          
+
           {/* Billing Cycle Toggle */}
           <div className="inline-flex items-center p-1.5 bg-slate-200/70 backdrop-blur-sm rounded-full border border-slate-300/50">
             <button
               type="button"
               onClick={() => setIsAnnual(false)}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                !isAnnual
+              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${!isAnnual
                   ? 'bg-white text-slate-900 shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               Monthly
             </button>
             <button
               type="button"
               onClick={() => setIsAnnual(true)}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                isAnnual
+              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${isAnnual
                   ? 'bg-[#FF6B00] text-white shadow-md shadow-orange-500/20'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               <span>Annual</span>
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                isAnnual ? 'bg-white/20 text-white' : 'bg-slate-300/80 text-slate-700'
-              }`}>
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isAnnual ? 'bg-white/20 text-white' : 'bg-slate-300/80 text-slate-700'
+                }`}>
                 Save 15%
               </span>
             </button>
@@ -116,22 +114,20 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
             <button
               type="button"
               onClick={() => setCurrency('INR')}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                currency === 'INR'
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${currency === 'INR'
                   ? 'bg-white text-slate-900 shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               INR (₹)
             </button>
             <button
               type="button"
               onClick={() => setCurrency('USD')}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                currency === 'USD'
+              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${currency === 'USD'
                   ? 'bg-white text-slate-900 shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               USD ($)
             </button>
@@ -150,11 +146,10 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
                 key={plan.id}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className={`bg-white rounded-[24px] p-8 flex flex-col justify-between relative transition-all duration-300 ${
-                  plan.isBusiness
+                className={`bg-white rounded-[24px] p-8 flex flex-col justify-between relative transition-all duration-300 ${plan.isBusiness
                     ? 'border-2 border-orange-500/40 shadow-xl shadow-orange-500/5 ring-1 ring-orange-500/20'
                     : 'border border-slate-200/80 shadow-lg shadow-slate-200/40 hover:border-slate-300'
-                }`}
+                  }`}
               >
                 <div>
                   {/* Card Header */}
@@ -180,7 +175,7 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
                         Contact Sales
                       </div>
                     )}
-                    
+
                     <span className="text-xs font-medium text-slate-400 block mt-1.5">
                       per organization
                     </span>
@@ -207,11 +202,10 @@ export const PricingSection: React.FC<{ onBookDemo: () => void }> = ({ onBookDem
                   <button
                     type="button"
                     onClick={onBookDemo}
-                    className={`w-full py-3.5 px-6 rounded-full text-sm font-bold transition-all duration-200 cursor-pointer flex items-center justify-center shadow-sm hover:shadow ${
-                      plan.isBusiness
+                    className={`w-full py-3.5 px-6 rounded-full text-sm font-bold transition-all duration-200 cursor-pointer flex items-center justify-center shadow-sm hover:shadow ${plan.isBusiness
                         ? 'bg-[#FF6B00] hover:bg-[#e56000] text-white shadow-orange-500/25'
                         : 'bg-[#FF6B00] hover:bg-[#e56000] text-white'
-                    }`}
+                      }`}
                   >
                     {plan.ctaText}
                   </button>

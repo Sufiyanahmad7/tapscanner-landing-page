@@ -10,12 +10,13 @@ export const BottomCTA: React.FC<{ onBookDemo: () => void }> = ({ onBookDemo }) 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 sm:whitespace-nowrap">
-          Transform Your Visitor &amp; Gate Operations Today
+        <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-slate-900">
+          Transform Your Visitor Management Today
         </h2>
 
-        <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed font-medium">
-          Join 500+ global enterprises, manufacturing hubs, and corporate towers securing over 1,000,000 movements monthly with TapScanner.
+        <p className="mt-4 mx-auto max-w-xl text-sm sm:text-base leading-7 text-slate-600 mb-8">
+          Simplify visitor check-ins, automate approvals, and strengthen workplace
+          security with one intelligent visitor management platform.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -25,7 +26,7 @@ export const BottomCTA: React.FC<{ onBookDemo: () => void }> = ({ onBookDemo }) 
             onClick={onBookDemo}
             rightIcon={<ArrowRight className="w-5 h-5" />}
           >
-            Request Enterprise Demo
+            Request Demo
           </Button>
 
           <Button
@@ -34,7 +35,7 @@ export const BottomCTA: React.FC<{ onBookDemo: () => void }> = ({ onBookDemo }) 
             onClick={onBookDemo}
             className="bg-white text-slate-700 hover:bg-slate-100 border-slate-300"
           >
-            Talk to Security Sales
+            Talk to Our Team
           </Button>
         </div>
       </div>
