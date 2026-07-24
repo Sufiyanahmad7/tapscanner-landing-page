@@ -49,10 +49,7 @@ export const Footer: React.FC<{ onBookDemo: () => void }> = ({ onBookDemo }) => 
             <ul className="space-y-2.5 text-xs text-slate-500">
               <li><a href="#solutions" className="hover:text-orange-600 transition-colors">Corporate Offices</a></li>
               <li><a href="#solutions" className="hover:text-orange-600 transition-colors">Manufacturing Plants</a></li>
-              <li><a href="#solutions" className="hover:text-orange-600 transition-colors">Hospitals & Healthcare</a></li>
-              <li><a href="#solutions" className="hover:text-orange-600 transition-colors">Educational Institutions</a></li>
               <li><a href="#solutions" className="hover:text-orange-600 transition-colors">Logistics & Warehouses</a></li>
-              <li><a href="#solutions" className="hover:text-orange-600 transition-colors">Government Organizations</a></li>
             </ul>
           </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UserCheck, Sparkles, Bell, Printer, ShieldAlert, BarChart3, Check, ArrowRight } from 'lucide-react';
 import { GlassCard } from '@/components/ui/GlassCard';
@@ -149,6 +149,26 @@ const VISITOR_MANAGEMENT_FEATURES = [
 
 export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookDemo }) => {
   const [activeTabId, setActiveTabId] = useState<string>('qr-invite');
+  const [isUserInteracted, setIsUserInteracted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isUserInteracted) return;
+
+    const timer = setInterval(() => {
+      setActiveTabId((prevId) => {
+        const currentIndex = VISITOR_MANAGEMENT_FEATURES.findIndex((f) => f.id === prevId);
+        const nextIndex = (currentIndex + 1) % VISITOR_MANAGEMENT_FEATURES.length;
+        return VISITOR_MANAGEMENT_FEATURES[nextIndex].id;
+      });
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [isUserInteracted]);
+
+  const handleTabClick = (id: string) => {
+    setActiveTabId(id);
+    setIsUserInteracted(true);
+  };
 
   const activeFeature =
     VISITOR_MANAGEMENT_FEATURES.find((f) => f.id === activeTabId) || VISITOR_MANAGEMENT_FEATURES[0];
@@ -168,7 +188,7 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
         </div>
 
         {/* Feature Tab Switcher & Preview Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Col: Feature List Tabs (Span 5) */}
           <div className="lg:col-span-5 space-y-3">
             {VISITOR_MANAGEMENT_FEATURES.map((feature) => {
@@ -176,7 +196,7 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
               return (
                 <button
                   key={feature.id}
-                  onClick={() => setActiveTabId(feature.id)}
+                  onClick={() => handleTabClick(feature.id)}
                   className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-start gap-4 cursor-pointer border ${isActive
                     ? `${feature.activeBgColor} shadow-xl shadow-slate-200/50 scale-[1.01]`
                     : `${feature.bgColor} border-slate-200/60 text-slate-700`
@@ -211,7 +231,7 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
           </div>
 
           {/* Right Col: Active Feature Deep-Dive Preview Card (Span 7) */}
-          <div className="lg:col-span-7 sticky top-28">
+          <div className="lg:col-span-7 sticky top-28 h-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeFeature.id}
@@ -219,49 +239,52 @@ export const PlatformModules: React.FC<{ onBookDemo?: () => void }> = ({ onBookD
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
+                className="h-full"
               >
-                <GlassCard variant="light" className={`p-6 md:p-8 ${activeFeature.previewBorder} bg-gradient-to-br from-white via-white to-slate-50`}>
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-12 h-12 rounded-2xl ${activeFeature.iconBgActive} flex items-center justify-center shadow-lg`}>
-                        {iconComponents[activeFeature.iconName]}
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-slate-900">{activeFeature.title}</h3>
-                        <span className={`text-xs font-mono font-semibold ${activeFeature.accentColor}`}>
-                          TapScanner Visitor Management
-                        </span>
-                      </div>
-                    </div>
-                    <span className={`text-xs font-mono font-semibold px-3 py-1 rounded-full ${activeFeature.badgeBg}`}>
-                      {activeFeature.badge}
-                    </span>
-                  </div>
-
-                  <p className="text-sm text-slate-700 leading-relaxed mb-6">
-                    {activeFeature.fullDesc}
-                  </p>
-
-                  {/* Highlights Bullet List */}
-                  <div className="mb-6">
-                    <h5 className="text-xs font-mono tracking-widest text-slate-400 uppercase font-bold mb-3">
-                      KEY CAPABILITIES
-                    </h5>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {activeFeature.highlights.map((item) => (
-                        <div
-                          key={item}
-                          className="flex items-center gap-2 text-xs font-semibold text-slate-800 bg-white border border-slate-200/80 px-3 py-2 rounded-xl shadow-xs"
-                        >
-                          <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                          <span>{item}</span>
+                <GlassCard variant="light" className={`p-6 md:p-8 ${activeFeature.previewBorder} bg-gradient-to-br from-white via-white to-slate-50 h-full flex flex-col justify-between`}>
+                  <div>
+                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-12 h-12 rounded-2xl ${activeFeature.iconBgActive} flex items-center justify-center shadow-lg`}>
+                          {iconComponents[activeFeature.iconName]}
                         </div>
-                      ))}
+                        <div>
+                          <h3 className="text-xl font-bold text-slate-900">{activeFeature.title}</h3>
+                          <span className={`text-xs font-mono font-semibold ${activeFeature.accentColor}`}>
+                            TapScanner Visitor Management
+                          </span>
+                        </div>
+                      </div>
+                      <span className={`text-xs font-mono font-semibold px-3 py-1 rounded-full ${activeFeature.badgeBg}`}>
+                        {activeFeature.badge}
+                      </span>
+                    </div>
+
+                    <p className="text-sm text-slate-700 leading-relaxed mb-6">
+                      {activeFeature.fullDesc}
+                    </p>
+
+                    {/* Highlights Bullet List */}
+                    <div className="mb-6">
+                      <h5 className="text-xs font-mono tracking-widest text-slate-400 uppercase font-bold mb-3">
+                        KEY CAPABILITIES
+                      </h5>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {activeFeature.highlights.map((item) => (
+                          <div
+                            key={item}
+                            className="flex items-center gap-2 text-xs font-semibold text-slate-800 bg-white border border-slate-200/80 px-3 py-2 rounded-xl shadow-xs"
+                          >
+                            <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
                   {/* Metrics & CTA Row */}
-                  <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-auto">
                     <div className="flex gap-6">
                       {activeFeature.metrics.map((metric) => (
                         <div key={metric.label}>

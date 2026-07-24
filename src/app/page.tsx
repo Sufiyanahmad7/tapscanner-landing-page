@@ -10,11 +10,9 @@ import { WorkflowTimeline } from '@/components/sections/WorkflowTimeline';
 import { DashboardShowcase } from '@/components/sections/DashboardShowcase';
 import { IndustrySolutions } from '@/components/sections/IndustrySolutions';
 import { Testimonials } from '@/components/sections/Testimonials';
-import { ROIStats } from '@/components/sections/ROIStats';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { InquiryForm } from '@/components/sections/InquiryForm';
-import { BottomCTA } from '@/components/sections/BottomCTA';
 import { Footer } from '@/components/sections/Footer';
 import { InquiryFormModal } from '@/components/sections/InquiryFormModal';
 
@@ -58,9 +56,6 @@ export default function Home() {
       {/* 13. Customer Testimonials & Verified Social Proof */}
       <Testimonials />
 
-      {/* 14. Animated ROI Impact Stats */}
-      <ROIStats />
-
       {/* 16. Transparent Tiered Enterprise Pricing Matrix */}
       <PricingSection onBookDemo={handleOpenDemo} />
 
@@ -69,9 +64,6 @@ export default function Home() {
 
       {/* 18. Complete 11-Field Enterprise Demo Inquiry Form */}
       <InquiryForm />
-
-      {/* 19. High-Intent Bottom CTA Banner */}
-      <BottomCTA onBookDemo={handleOpenDemo} />
 
       {/* 20. Global Enterprise Footer */}
       <Footer onBookDemo={handleOpenDemo} />

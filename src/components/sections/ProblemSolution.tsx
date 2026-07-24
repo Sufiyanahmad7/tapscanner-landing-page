@@ -24,7 +24,7 @@ const withItems = [
 
 export const ProblemSolution: React.FC = () => {
   return (
-    <section className="py-6 sm:py-8 lg:py-10 bg-white relative overflow-hidden flex flex-col justify-center min-h-[85vh] max-h-screen" id="problem">
+    <section className="py-6 sm:py-8 lg:py-10 bg-white relative overflow-hidden flex flex-col justify-center min-h-[85vh] max-h-screen" id="why-tapscanner">
       <div className="max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header Stack */}
         <motion.div
