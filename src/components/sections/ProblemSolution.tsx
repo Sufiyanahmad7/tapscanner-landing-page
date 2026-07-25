@@ -18,7 +18,7 @@ const withItems = [
   'QR-based gate passes',
   'Instant host approvals',
   'Real-time visitor tracking',
-  'Emergency evacuation dashboard',
+  'Live Visitor Dashboard',
   'Complete audit history',
 ];
 

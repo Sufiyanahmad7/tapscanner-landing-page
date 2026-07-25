@@ -5,8 +5,6 @@ export const TRUSTED_COMPANIES = [
   { name: 'Novartis BioPharma', location: 'Global R&D Hubs' },
   { name: 'Cognizant Tech Park', location: '42 Facilities' },
   { name: 'Tata Motors Assembly', location: 'Plant Gate 1-8' },
-  { name: 'Fortis Health City', location: 'Hospital Network' },
-  { name: 'St. Xavier Campus', location: '3 Campuses' },
   { name: 'Adani Logistics Hub', location: 'Port & Inland' },
   { name: 'DLF Cyber City', location: 'Commercial Towers' },
 ];
